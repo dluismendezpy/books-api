@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        body {
+            min-width: 320px;
+            min-height: 100vh;
+            padding: 2rem 10rem;
+            font-family: Arial, sans-serif;
+            overflow-wrap: break-word;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #dddddd;
+        }
+        h1 {
+            text-align: center;
+        }
+        a {
+            text-decoration: underline;
+            color: inherit;
+        }
+    </style>
+    <title>{% block title %}Books{% endblock title %}</title>
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+</body>
+</html>
