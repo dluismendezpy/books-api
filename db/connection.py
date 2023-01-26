@@ -1,8 +1,9 @@
 import psycopg2
 from decouple import config as env
-from typing import List, Tuple
+from typing import Dict, List, Tuple
 
 from alembic import command, config
+from entities.book import Book
 
 from .seed_data import books
 
@@ -75,7 +76,7 @@ class DatabaseConnection:
         alembic_cfg = config.Config("alembic.ini")
         command.upgrade(alembic_cfg, "head")
 
-    def get_book(self, book_id: int) -> Tuple | None:
+    def get_book(self, book_id: int) -> Tuple[Book] | None:
         """
         Get a specific book
         :param book_id: argument used to get a book
