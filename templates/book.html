@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Book | {{ book.title }}
+{% endblock title %}
+
+{% block content %}
+<h1>{{ book.title }}</h1>
+<div style="display: flex;flex-direction: row; justify-content: flex-start;margin-bottom: 50px;gap: 20px">
+    <div>{{ book.author }}</div>
+    |
+    <div>{{ book.pages }} pages</div>
+</div>
+
+<div style="font-size: 20px">{{ book.content }}</div>
+
+<div style="display: flex;flex-direction: row; justify-content: flex-end;margin-top: 50px;gap: 10px">
+    <div>{{ book.created_at }}</div>
+    -
+    <div>{{ book.last_updated }}</div>
+</div>
+{% endblock content %}
