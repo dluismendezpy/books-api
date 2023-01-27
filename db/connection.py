@@ -22,20 +22,6 @@ class DatabaseConnection:
             port=env("POSTGRES_PORT", default=5432, cast=int),
         )
         self.cursor = self.connection.cursor()
-        self.cursor.execute(
-            """
-            CREATE TABLE IF NOT EXISTS books (
-                id SERIAL PRIMARY KEY,
-                title VARCHAR(255) UNIQUE NOT NULL,
-                author VARCHAR(255) NOT NULL,
-                content TEXT NOT NULL,
-                pages INTEGER NOT NULL,
-                created_at TIMESTAMP NOT NULL,
-                last_updated TIMESTAMP NOT NULL
-            );
-            """
-        )
-        self.connection.commit()
 
     def __enter__(self):
         return self
