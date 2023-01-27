@@ -1,8 +1,18 @@
+import os
+import sys
 from logging.config import fileConfig
 
+from decouple import config as cf
+from dotenv import load_dotenv
+from pathlib import Path
 from sqlalchemy import engine_from_config, pool
 
 from alembic import context
+
+# path ops
+parent: Path = Path(__file__).resolve().parents[1]
+load_dotenv(os.path.join(parent, ".quartenv"))
+sys.path.append(str(parent))
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -23,6 +33,21 @@ target_metadata = None
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
+
+section = config.config_ini_section
+config.set_section_option(
+    section, "POSTGRES_USER", cf("POSTGRES_USER", default="postgres")
+)
+config.set_section_option(
+    section, "POSTGRES_PASSWORD", cf("POSTGRES_PASSWORD")
+)
+config.set_section_option(
+    section, "POSTGRES_HOST", cf("POSTGRES_HOST", default="localhost")
+)
+config.set_section_option(
+    section, "POSTGRES_PORT", cf("POSTGRES_PORT", default=5432)
+)
+config.set_section_option(section, "POSTGRES_DB", cf("POSTGRES_DB"))
 
 
 def run_migrations_offline() -> None:
